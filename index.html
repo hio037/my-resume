@@ -766,14 +766,28 @@
           <div class="p-6">
             <h3 class="text-xl font-semibold mb-4 text-primary">吉他弹唱</h3>
             <div class="flex justify-center">
-              <!-- 视频 -->
+              <!-- 音频播放器 -->
               <div class="flex flex-col items-center w-full max-w-md">
                 <h4 class="text-lg font-medium mb-3 text-secondary">醉赤壁</h4>
-                <div class="rounded-lg overflow-hidden mb-4 relative w-full" style="padding-top: 100%;">
-                  <video controls style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain;">
-                    <source src="醉赤壁.mp4" type="video/mp4">
-                    您的浏览器不支持视频播放。
-                  </video>
+                <div class="bg-light rounded-lg p-6 w-full flex flex-col items-center">
+                  <!-- 播放器图标 -->
+                  <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mb-4 cursor-pointer hover:bg-secondary transition-colors duration-300" id="play-button">
+                    <i class="fa fa-play text-white text-3xl"></i>
+                  </div>
+                  <!-- 音频元素 -->
+                  <audio id="audio-player" src="醉赤壁.mp3">
+                    您的浏览器不支持音频播放。
+                  </audio>
+                  <!-- 进度条 -->
+                  <div class="w-full mt-4">
+                    <div class="flex justify-between text-xs text-gray-500 mb-1">
+                      <span id="current-time">0:00</span>
+                      <span id="duration">0:00</span>
+                    </div>
+                    <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                      <div class="h-full bg-primary rounded-full" id="progress-bar" style="width: 0%"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1015,7 +1029,51 @@
         colorIndex = (colorIndex + 1) % colors.length;
       }, 1000);
       
-
+      // 音频播放器控制
+      const audioPlayer = document.getElementById('audio-player');
+      const playButton = document.getElementById('play-button');
+      const progressBar = document.getElementById('progress-bar');
+      const currentTimeElement = document.getElementById('current-time');
+      const durationElement = document.getElementById('duration');
+      
+      // 播放/暂停切换
+      playButton.addEventListener('click', function() {
+        if (audioPlayer.paused) {
+          audioPlayer.play();
+          playButton.innerHTML = '<i class="fa fa-pause text-white text-3xl"></i>';
+        } else {
+          audioPlayer.pause();
+          playButton.innerHTML = '<i class="fa fa-play text-white text-3xl"></i>';
+        }
+      });
+      
+      // 音频元数据加载完成后设置总时长
+      audioPlayer.addEventListener('loadedmetadata', function() {
+        const duration = audioPlayer.duration;
+        const minutes = Math.floor(duration / 60);
+        const seconds = Math.floor(duration % 60);
+        durationElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+      });
+      
+      // 播放过程中更新进度条和当前时间
+      audioPlayer.addEventListener('timeupdate', function() {
+        const currentTime = audioPlayer.currentTime;
+        const duration = audioPlayer.duration;
+        const progress = (currentTime / duration) * 100;
+        progressBar.style.width = `${progress}%`;
+        
+        // 更新当前时间显示
+        const minutes = Math.floor(currentTime / 60);
+        const seconds = Math.floor(currentTime % 60);
+        currentTimeElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+      });
+      
+      // 播放结束后重置播放按钮
+      audioPlayer.addEventListener('ended', function() {
+        playButton.innerHTML = '<i class="fa fa-play text-white text-3xl"></i>';
+        progressBar.style.width = '0%';
+        currentTimeElement.textContent = '0:00';
+      });
     });
   </script>
 </body>
