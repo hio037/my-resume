@@ -3,524 +3,601 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>个人简历 - 电商运营</title>
+  <title>张杰栋 · 电商运营</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            primary: '#D4A76A',
-            secondary: '#E8C4A2',
-            light: '#F9F5F0',
-            dark: '#4A4035'
+            primary: '#2A5C9A',
+            'primary-dark': '#1E4A7E',
+            'primary-light': '#E8EFF8',
+            'primary-faint': '#F0F5FB',
+            accent: '#FF8C42',
+            'accent-dark': '#E07530',
+            'accent-light': '#FFF0E6',
+            'bg-warm': '#F7F5F2',
+            'bg-cool': '#F2F4F7',
+            'text-dark': '#1C1E21',
+            'text-soft': '#4A4E54',
+            'text-muted': '#8A8F96',
           },
           fontFamily: {
-            sans: ['微软雅黑', 'Microsoft YaHei', 'Inter', 'system-ui', 'sans-serif']
-          }
-        }
-      }
-    }
+            display: ['Playfair Display', 'Noto Serif SC', 'serif'],
+            heading: ['Playfair Display', 'Noto Sans SC', 'serif'],
+            body: ['DM Sans', 'Noto Sans SC', 'sans-serif'],
+          },
+          boxShadow: {
+            'glass': '0 8px 32px rgba(42, 92, 154, 0.08)',
+            'glass-lg': '0 16px 48px rgba(42, 92, 154, 0.12)',
+            'float': '0 12px 40px -8px rgba(42, 92, 154, 0.15)',
+            'orange': '0 8px 24px rgba(255, 140, 66, 0.25)',
+          },
+        },
+      },
+    };
   </script>
-  <style type="text/tailwindcss">
-    @layer utilities {
-      .content-auto {
-        content-visibility: auto;
-      }
-      .text-shadow {
-        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      }
-      .transition-all-300 {
-        transition: all 300ms ease-in-out;
-      }
-      .welcome-animation {
-        animation: pulse 2s infinite;
-      }
-      .card-hover {
-        transition: all 300ms ease-in-out;
-      }
-      .card-hover:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 16px rgba(0,0,0,0.08);
-      }
-      .btn-hover {
-        transition: all 300ms ease-in-out;
-      }
-      .btn-hover:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      }
-      .link-hover {
-        transition: all 300ms ease-in-out;
-        position: relative;
-      }
-      .link-hover::after {
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: currentColor;
-        transition: width 300ms ease-in-out;
-      }
-      .link-hover:hover::after {
-        width: 100%;
-      }
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.05);
-        }
-        100% {
-          transform: scale(1);
-        }
-      }
-    }
-  </style>
   <style>
-    /* 加载动画样式 */
-    #loader {
+    /* ===== Design Tokens ===== */
+    :root {
+      --blue: oklch(0.48 0.14 260);
+      --blue-dark: oklch(0.40 0.16 258);
+      --blue-light: oklch(0.55 0.10 262);
+      --blue-faint: oklch(0.92 0.03 265);
+      --orange: oklch(0.70 0.18 48);
+      --orange-dark: oklch(0.62 0.20 46);
+      --orange-light: oklch(0.85 0.08 50);
+      --bg: oklch(0.965 0.006 85);
+      --bg-warm: oklch(0.97 0.008 80);
+      --surface: oklch(1 0 0 / 0.72);
+      --border: oklch(0.88 0.01 80 / 0.5);
+      --text-primary: oklch(0.22 0.02 260);
+      --text-secondary: oklch(0.42 0.02 260);
+      --radius: 16px;
+      --transition: cubic-bezier(0.4, 0, 0.2, 1);
+      --bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* ===== Base ===== */
+    * { scrollbar-width: thin; scrollbar-color: var(--blue) transparent; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+    ::selection { background: var(--blue); color: white; }
+    html { scroll-behavior: smooth; }
+    body { overflow-x: hidden; }
+
+    /* ===== Background ===== */
+    body {
+      background: linear-gradient(165deg, var(--bg) 0%, var(--bg-warm) 40%, oklch(0.96 0.004 90) 100%);
+      min-height: 100vh;
+    }
+    .bg-noise {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #F9F5F0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease-out;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.018;
     }
-    
-    .loader-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 32px;
-      width: 240px;
+
+    /* ===== Glass Card ===== */
+    .glass {
+      background: var(--surface);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: all 400ms var(--transition);
     }
-    
-    .progress-container {
+    .glass:hover {
+      box-shadow: var(--tw-shadow-colored, 0 8px 32px rgba(42,92,154,0.08));
+      transform: translateY(-4px);
+    }
+    .glass-card {
+      background: oklch(1 0 0 / 0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid oklch(0.9 0.01 85 / 0.5);
+      border-radius: var(--radius);
+      transition: all 450ms var(--bounce);
+    }
+    .glass-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px -12px oklch(0.48 0.14 260 / 0.15);
+      border-color: oklch(0.48 0.14 260 / 0.2);
+    }
+
+    /* ===== Sidebar ===== */
+    .sidebar {
+      position: sticky;
+      top: 88px;
+      height: fit-content;
+      max-height: calc(100vh - 104px);
+      overflow-y: auto;
+    }
+    @media (max-width: 1023px) {
+      .sidebar { position: static; max-height: none; }
+    }
+
+    /* ===== Section Heading ===== */
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: var(--text-primary);
+      margin-bottom: 2rem;
+    }
+    .section-heading i {
+      color: var(--blue);
+      font-size: 1.25rem;
+      width: 2.25rem;
+      height: 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: oklch(0.48 0.14 260 / 0.1);
+      border-radius: 10px;
+    }
+    .section-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, oklch(0.48 0.14 260 / 0.2), transparent);
+      margin-left: 0.5rem;
+    }
+
+    /* ===== Nav ===== */
+    nav {
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      background: oklch(1 0 0 / 0.82) !important;
+      border-bottom: 1px solid oklch(0.9 0.01 85 / 0.4);
+      transition: all 400ms var(--transition);
+    }
+    nav.scrolled {
+      background: oklch(1 0 0 / 0.92) !important;
+      box-shadow: 0 4px 32px -8px oklch(0 0 0 / 0.06) !important;
+    }
+    .nav-link {
       position: relative;
-      width: 100%;
-      height: 40px;
-      background-color: #F9F5F0;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+      color: var(--text-secondary);
+      transition: color 300ms var(--transition);
     }
-    
-    .progress-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #E8C4A2 0%, #D4A76A 100%);
-      border-radius: 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      animation: progress 1.5s ease-in-out forwards;
-    }
-    
-    .shopping-cart {
-      position: absolute;
-      top: 50%;
-      left: -30px;
-      transform: translateY(-50%);
-      color: #4A4035;
-      background-color: #F9F5F0;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.12);
-      animation: cart-move 1.5s ease-in-out forwards, cart-bounce 0.6s ease-in-out infinite;
-    }
-    
-    .shopping-cart::before,
-    .shopping-cart::after {
+    .nav-link::after {
       content: '';
       position: absolute;
-      width: 6px;
-      height: 6px;
-      background-color: #4A4035;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--blue);
+      border-radius: 1px;
+      transition: width 350ms var(--transition);
+    }
+    .nav-link:hover { color: var(--blue); }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link.active { color: var(--blue); font-weight: 600; }
+    .nav-link.active::after { width: 100%; }
+
+    /* ===== Hero ===== */
+    .hero-gradient {
+      background:
+        radial-gradient(ellipse at 20% 60%, oklch(0.48 0.14 260 / 0.08) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 30%, oklch(0.70 0.18 48 / 0.06) 0%, transparent 45%);
+    }
+    .hero-avatar {
+      position: relative;
       border-radius: 50%;
-      bottom: 4px;
-      animation: wheel-roll 1s linear infinite;
+      box-shadow: 0 8px 40px -8px oklch(0.48 0.14 260 / 0.2);
     }
-    
-    .shopping-cart::before {
-      left: 6px;
+    .hero-avatar::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid oklch(0.48 0.14 260 / 0.15);
+      animation: ring-pulse 3s ease-in-out infinite;
     }
-    
-    .shopping-cart::after {
-      right: 6px;
+    @keyframes ring-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.08); opacity: 0.8; }
     }
-    
-    @keyframes progress {
-      0% {
-        width: 0%;
-      }
-      100% {
-        width: 100%;
-      }
+
+    /* ===== Typing cursor ===== */
+    .typing-cursor::after {
+      content: '|';
+      animation: blink 1s step-end infinite;
+      color: var(--orange);
+      font-weight: 300;
     }
-    
-    @keyframes cart-move {
-      0% {
-        left: -30px;
-      }
-      100% {
-        left: calc(100% - 6px);
-      }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
-    
-    @keyframes cart-bounce {
-      0%, 100% {
-        transform: translateY(-50%) rotate(0deg);
-      }
-      25% {
-        transform: translateY(-55%) rotate(1deg);
-      }
-      75% {
-        transform: translateY(-55%) rotate(-1deg);
-      }
+
+    /* ===== Metric Badges ===== */
+    .metric-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: oklch(1 0 0 / 0.85);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid oklch(0.9 0.01 85 / 0.4);
+      border-radius: 12px;
+      font-size: 0.875rem;
+      transition: all 350ms var(--bounce);
     }
-    
-    @keyframes wheel-roll {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
+    .metric-badge:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 8px 24px -6px oklch(0.48 0.14 260 / 0.12);
+      border-color: oklch(0.48 0.14 260 / 0.15);
     }
-    
-    .loader-text {
-      font-size: 18px;
-      color: #4A4035;
+    .metric-badge .num {
+      font-weight: 700;
+      font-size: 1.125rem;
+    }
+    .metric-badge .num.blue { color: var(--blue); }
+    .metric-badge .num.orange { color: var(--orange); }
+    .metric-badge .label {
+      color: var(--text-secondary);
       font-weight: 500;
     }
-    
-    .loader-text::after {
+
+    /* ===== Timeline ===== */
+    .timeline-line {
+      position: absolute;
+      left: 1.25rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--blue), oklch(0.48 0.14 260 / 0.1));
+      border-radius: 1px;
+    }
+    .timeline-dot {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.875rem;
+      position: relative;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px oklch(0.48 0.14 260 / 0.2);
+    }
+    .timeline-dot::before {
       content: '';
-      animation: ellipsis 1.5s ease-in-out infinite;
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 2px solid oklch(0.48 0.14 260 / 0.15);
+      animation: dot-ring 2.5s ease-in-out infinite;
     }
-    
-    @keyframes ellipsis {
-      0%, 25% {
-        content: '';
-      }
-      50% {
-        content: '.';
-      }
-      75% {
-        content: '..';
-      }
-      100% {
-        content: '...';
-      }
+    @keyframes dot-ring {
+      0%, 100% { transform: scale(1); opacity: 0.4; }
+      50% { transform: scale(1.25); opacity: 0.7; }
     }
-    
-    /* 页面内容初始隐藏 */
-    body > *:not(#loader) {
+
+    /* ===== Scroll Animations ===== */
+    .reveal {
       opacity: 0;
-      transition: opacity 0.5s ease-in;
+      transform: translateY(30px);
+      transition: all 700ms var(--transition);
     }
-    
-    body.loaded > *:not(#loader) {
+    .reveal.visible {
       opacity: 1;
+      transform: translateY(0);
     }
-    
-    body.loaded #loader {
+    .reveal-left {
       opacity: 0;
+      transform: translateX(-30px);
+      transition: all 700ms var(--transition);
+    }
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: all 700ms var(--transition);
+    }
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 600ms var(--bounce);
+    }
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .stagger-children > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 600ms var(--transition);
+    }
+    .stagger-children.visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== Tag ===== */
+    .tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: var(--blue-faint);
+      color: var(--blue);
+      border-radius: 999px;
+      transition: all 300ms var(--transition);
+    }
+    .tag:hover {
+      background: oklch(0.48 0.14 260 / 0.15);
+      transform: translateY(-1px);
+    }
+    .tag-orange {
+      background: oklch(0.85 0.08 50 / 0.5);
+      color: var(--orange-dark);
+    }
+    .tag-orange:hover {
+      background: oklch(0.70 0.18 48 / 0.2);
+    }
+
+    /* ===== Buttons ===== */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.5rem;
+      background: var(--blue);
+      color: white;
+      border-radius: 999px;
+      font-weight: 500;
+      transition: all 350ms var(--bounce);
+    }
+    .btn-primary:hover {
+      background: var(--blue-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px -4px oklch(0.48 0.14 260 / 0.3);
+    }
+    .btn-primary:active {
+      transform: translateY(0) scale(0.97);
+    }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.5rem;
+      border: 1.5px solid var(--blue);
+      color: var(--blue);
+      border-radius: 999px;
+      font-weight: 500;
+      transition: all 350ms var(--bounce);
+    }
+    .btn-outline:hover {
+      background: var(--blue);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px -4px oklch(0.48 0.14 260 / 0.2);
+    }
+
+    /* ===== QR Modal ===== */
+    .qr-modal .glass {
+      animation: modal-in 0.35s var(--bounce);
+      box-shadow: 0 40px 80px -20px oklch(0 0 0 / 0.25);
+    }
+    @keyframes modal-in {
+      0% { opacity: 0; transform: scale(0.85) translateY(20px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* ===== Audio Player ===== */
+    #play-button {
+      box-shadow: 0 6px 24px oklch(0.48 0.14 260 / 0.2);
+      transition: all 400ms var(--bounce);
+    }
+    #play-button:hover { transform: scale(1.1); box-shadow: 0 8px 32px oklch(0.48 0.14 260 / 0.3); }
+    #play-button:active { transform: scale(0.92); }
+
+    /* ===== Mobile menu ===== */
+    #mobile-menu {
+      transition: all 300ms var(--transition);
+      border-top: 1px solid oklch(0.9 0.01 85 / 0.4);
+    }
+
+    /* ===== Education card ===== */
+    .edu-card {
+      border-left: 3px solid oklch(0.48 0.14 260 / 0.25);
+      transition: all 400ms var(--transition);
+    }
+    .edu-card:hover {
+      border-left-color: var(--blue);
+    }
+
+    /* ===== Project card icon area ===== */
+    .project-icon-area {
+      background: linear-gradient(135deg, oklch(0.48 0.14 260 / 0.08), oklch(0.70 0.18 48 / 0.06));
+      position: relative;
+      overflow: hidden;
+    }
+    .project-icon-area::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 40%, oklch(0.48 0.14 260 / 0.06), transparent 60%);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue)) !important;
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, oklch(0.70 0.18 48 / 0.3), transparent);
+    }
+
+    /* ===== Earth Online Timeline ===== */
+    .eo-dot { transition: all 400ms var(--transition); }
+    .eo-dot-main { box-shadow: 0 0 0 5px oklch(0.48 0.14 260 / 0.12); }
+    .eo-dot-side { box-shadow: 0 0 0 5px oklch(0.70 0.18 48 / 0.12); }
+
+    /* ===== Hover on travel images ===== */
+    .travel-img-wrap { overflow: hidden; border-radius: 10px; }
+    .travel-img-wrap img {
+      transition: transform 500ms var(--transition);
+    }
+    .travel-img-wrap:hover img {
+      transform: scale(1.12);
+    }
+    .travel-img-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, oklch(0 0 0 / 0.15) 0%, transparent 40%);
+      opacity: 0;
+      transition: opacity 400ms var(--transition);
       pointer-events: none;
     }
-    
-    /* 响应式时间线 */
+    .travel-img-wrap:hover::after { opacity: 1; }
+
+    /* ===== Mobile adjustments ===== */
     @media (max-width: 768px) {
-      .hidden.md\:block {
-        display: none;
+      .section-heading { font-size: 1.5rem; }
+      .section-heading i { width: 2rem; height: 2rem; font-size: 1rem; }
+      .timeline-line { left: 0.875rem; }
+      .timeline-dot { width: 1.75rem; height: 1.75rem; font-size: 0.625rem; }
+      .timeline-dot::before { inset: -3px; }
+      .metric-badge { padding: 0.375rem 0.75rem; font-size: 0.75rem; }
+      .metric-badge .num { font-size: 1rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
       }
-      
-      .relative.mb-12 {
-        margin-bottom: 24px;
-      }
-      
-      .flex.items-start {
-        flex-direction: column;
-      }
-      
-      .relative.z-10.mr-6 {
-        margin-right: 0;
-        margin-bottom: 12px;
-      }
-      
-      .w-12.h-12 {
-        width: 10px;
-        height: 10px;
-      }
-      
-      .w-12.h-12 i {
-        font-size: 0.75rem;
-      }
+      html { scroll-behavior: auto; }
+      .reveal, .reveal-left, .reveal-right, .reveal-scale,
+      .stagger-children > * { opacity: 1 !important; transform: none !important; }
     }
   </style>
 </head>
-<body class="bg-gray-50 font-sans">
-  <!-- 加载动画 -->
-  <div id="loader">
-    <div class="loader-container">
-      <div class="progress-container">
-        <div class="progress-bar"></div>
-        <div class="shopping-cart">
-          <i class="fa fa-shopping-cart text-2xl"></i>
-        </div>
+<body>
+
+  <!-- SVG Noise Texture -->
+  <svg class="bg-noise" xmlns="http://www.w3.org/2000/svg" width="300" height="300">
+    <filter id="n">
+      <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="1" stitchTiles="stitch"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#n)" opacity="1"/>
+  </svg>
+
+  <!-- ===== Navbar ===== -->
+  <nav class="fixed w-full z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+      <a href="#hero" class="flex items-center gap-2 group">
+        <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white text-sm font-bold transition-all duration-300 group-hover:bg-accent">张</div>
+        <span class="text-lg font-semibold text-text-dark hidden sm:inline">杰栋</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-6">
+        <a href="#about" class="nav-link text-sm">关于</a>
+        <a href="#education" class="nav-link text-sm">教育</a>
+        <a href="#skills" class="nav-link text-sm">技能</a>
+        <a href="#experience" class="nav-link text-sm">经历</a>
+        <a href="#projects" class="nav-link text-sm">项目</a>
+        <a href="#hobbies" class="nav-link text-sm">生活</a>
+        <a href="#contact" class="nav-link text-sm">联系</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="btn-primary text-sm hidden sm:inline-flex">
+          <i class="fa fa-paper-plane"></i> 联系我
+        </a>
+        <button class="lg:hidden text-text-soft p-2 hover:text-primary transition-colors" id="menu-toggle">
+          <i class="fa fa-bars text-xl"></i>
+        </button>
       </div>
     </div>
-    <div class="loader-text">加载中...</div>
-  </div>
-  <!-- 导航栏 -->
-  <nav class="bg-white shadow-md fixed w-full z-10">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <i class="fa fa-shopping-bag text-primary text-2xl"></i>
-        <span class="text-xl font-bold text-primary">电商运营简历</span>
-      </div>
-      <div class="hidden md:flex space-x-6">
-        <a href="#about" class="text-gray-600 hover:text-primary transition-all-300 link-hover">关于我</a>
-        <a href="#education" class="text-gray-600 hover:text-primary transition-all-300 link-hover">教育背景</a>
-        <a href="#skills" class="text-gray-600 hover:text-primary transition-all-300 link-hover">技能</a>
-        <a href="#experience" class="text-gray-600 hover:text-primary transition-all-300 link-hover">经历</a>
-        <a href="#projects" class="text-gray-600 hover:text-primary transition-all-300 link-hover">项目</a>
-        <a href="#hobbies" class="text-gray-600 hover:text-primary transition-all-300 link-hover">兴趣爱好</a>
-        <a href="#contact" class="text-gray-600 hover:text-primary transition-all-300 link-hover">联系方式</a>
-      </div>
-      <button class="md:hidden text-gray-600 focus:outline-none" id="menu-toggle">
-        <i class="fa fa-bars text-xl"></i>
-      </button>
-    </div>
-    <!-- 移动端菜单 -->
-    <div class="md:hidden hidden bg-white w-full" id="mobile-menu">
-      <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
-        <a href="#about" class="text-gray-600 hover:text-primary transition-all-300 py-2 link-hover">关于我</a>
-        <a href="#education" class="text-gray-600 hover:text-primary transition-all-300 py-2 link-hover">教育背景</a>
-        <a href="#skills" class="text-gray-600 hover:text-primary transition-all-300 py-2 link-hover">技能</a>
-        <a href="#experience" class="text-gray-600 hover:text-primary transition-all-300 py-2 link-hover">经历</a>
-        <a href="#projects" class="text-gray-600 hover:text-primary transition-all-300 py-2 link-hover">项目</a>
-        <a href="#hobbies" class="text-gray-600 hover:text-primary transition-all-300 py-2 link-hover">兴趣爱好</a>
-        <a href="#contact" class="text-gray-600 hover:text-primary transition-all-300 py-2 link-hover">联系方式</a>
+    <!-- Mobile Menu -->
+    <div class="lg:hidden hidden bg-white/95 backdrop-blur-xl" id="mobile-menu">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
+        <a href="#about" class="nav-link px-4 py-2.5 rounded-lg text-sm hover:bg-primary-faint">关于我</a>
+        <a href="#education" class="nav-link px-4 py-2.5 rounded-lg text-sm hover:bg-primary-faint">教育背景</a>
+        <a href="#skills" class="nav-link px-4 py-2.5 rounded-lg text-sm hover:bg-primary-faint">技能</a>
+        <a href="#experience" class="nav-link px-4 py-2.5 rounded-lg text-sm hover:bg-primary-faint">经历</a>
+        <a href="#projects" class="nav-link px-4 py-2.5 rounded-lg text-sm hover:bg-primary-faint">项目</a>
+        <a href="#hobbies" class="nav-link px-4 py-2.5 rounded-lg text-sm hover:bg-primary-faint">兴趣爱好</a>
+        <a href="#contact" class="nav-link px-4 py-2.5 rounded-lg text-sm hover:bg-primary-faint">联系方式</a>
       </div>
     </div>
   </nav>
 
-  <!-- 英雄区 -->
-  <header class="pt-24 pb-16 bg-gradient-to-br from-primary to-secondary text-white">
-    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
-      <div class="md:w-1/2 mb-8 md:mb-0">
-        <h1 class="text-5xl md:text-6xl font-bold mb-6 text-shadow min-h-[140px] md:min-h-[180px] font-sans" id="hero-title">你好，我是 <span class="text-yellow-300 animate-pulse" id="name">张杰栋</span></h1>
-        <p class="text-base md:text-lg mb-8 max-w-lg leading-relaxed">武汉理工大学金融学硕士在读，拥有<span class="font-semibold">字节跳动、得物</span>电商运营实习经历，熟悉<span class="font-semibold">补贴运营、履约运营</span>全流程，擅长用<span class="font-semibold">数据分析</span>优化活动效率，具备<span class="font-semibold">跨部门协同与快速落地</span>能力，可立即到岗。</p>
-        <div class="flex space-x-4">
-          <a href="#experience" class="border-2 border-white text-white px-6 py-3 rounded-full font-medium hover:bg-white hover:text-primary transition-all-300 welcome-animation btn-hover">查看项目</a>
-          <a href="#contact" class="border-2 border-white text-white px-6 py-3 rounded-full font-medium hover:bg-white hover:text-primary transition-all-300 welcome-animation btn-hover">联系我</a>
-        </div>
-      </div>
-      <div class="md:w-1/2 flex justify-center">
-        <div class="w-64 h-64 bg-white rounded-full flex items-center justify-center shadow-xl overflow-hidden border-4 border-primary">
-          <img src="卡通头像.png" alt="张杰栋" class="w-full h-full object-cover">
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- 关于我 -->
-  <section id="about" class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-primary flex items-center justify-center gap-3">
-        <i class="fa fa-user"></i>
-        关于我
-      </h2>
-      <div class="flex flex-col md:flex-row items-center max-w-4xl mx-auto">
-        <div class="md:w-1/3 mb-8 md:mb-0">
-          <div class="bg-light rounded-xl p-6 shadow-sm hover:shadow-md transition-all-300">
-            <h3 class="text-xl font-semibold mb-4 text-primary">个人信息</h3>
-            <ul class="space-y-3 leading-relaxed">
-              <li class="flex items-center">
-                <i class="fa fa-user text-secondary mr-3 w-6"></i>
-                <span>张杰栋</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fa fa-graduation-cap text-secondary mr-3 w-6"></i>
-                <span>武汉理工大学 金融学硕士</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fa fa-envelope text-secondary mr-3 w-6"></i>
-                <span>1240886436@qq.com</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fa fa-phone text-secondary mr-3 w-6"></i>
-                <span>153-7703-1331</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fa fa-map-marker text-secondary mr-3 w-6"></i>
-                <span>武汉市洪山区</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fa fa-briefcase text-secondary mr-3 w-6"></i>
-                <span>22岁，立即到岗</span>
-              </li>
-            </ul>
+  <!-- ===== Hero ===== -->
+  <section id="hero" class="pt-28 pb-16 hero-gradient relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+        <!-- Avatar -->
+        <div class="lg:order-2 flex-shrink-0">
+          <div class="hero-avatar w-48 h-48 sm:w-56 sm:h-56 overflow-hidden bg-white">
+            <img src="卡通头像.png" alt="张杰栋" class="w-full h-full object-cover">
           </div>
         </div>
-        <div class="md:w-2/3 md:pl-8">
-          <h3 class="text-xl font-semibold mb-6 text-primary">个人简介</h3>
-          <p class="text-gray-700 mb-6 leading-relaxed">我是武汉理工大学金融科技本科，金融学硕士在读学生，对电商运营领域充满热情。在校期间，我系统学习了金融、数据分析等相关课程，并积极参与电商相关的实践活动。</p>
-          <p class="text-gray-700 mb-6 leading-relaxed">我具有字节跳动和得物的电商运营实习经验，熟悉补贴运营和履约运营，具备良好的数据分析能力和跨部门协作能力。我性格开朗，善于沟通，具有良好的团队协作精神，能够快速适应新环境。</p>
-          <p class="text-gray-700 leading-relaxed">我希望能够在电商运营领域找到一份全职工作，将所学知识应用到实际工作中，同时不断学习和成长，为企业创造价值。</p>
-        </div>
-      </div>
-      
-      <!-- 地球Online 游戏进度时间轴 -->
-      <div class="max-w-4xl mx-auto mt-12">
-        <h3 class="text-xl font-bold mb-6 flex items-center justify-center gap-2">
-          <span class="text-dark">地球Online</span>
-          <span class="bg-primary text-white px-2 py-1 rounded-full text-sm">开放游戏进度</span>
-        </h3>
-        
-        <div class="relative">
-          <!-- 时间轴中心线 -->
-          <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200"></div>
-          
-          <!-- 任务标签 -->
-          <div class="flex justify-between mb-4">
-            <div class="bg-primary/10 text-primary font-bold px-3 py-1 rounded-lg text-sm shadow-sm">
-              主线任务
-            </div>
-            <div class="bg-green-100 text-green-700 font-bold px-3 py-1 rounded-lg text-sm shadow-sm">
-              支线任务
-            </div>
+        <!-- Text -->
+        <div class="lg:order-1 flex-1 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-faint text-primary text-sm font-medium mb-4">
+            <i class="fa fa-check-circle text-xs"></i>
+            立即到岗 · 武汉
           </div>
-          
-          <!-- 任务项 -->
-          <div class="space-y-6">
-            <!-- 2026.04 支线任务 -->
-            <div class="relative flex items-center">
-              <div class="w-1/2 pr-6"></div>
-              <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-green-400 rounded-full border-2 border-white shadow"></div>
-              <div class="w-1/2 pl-6">
-                <div class="bg-light rounded-lg p-3 shadow-sm border-r-3 border-green-400 inline-block">
-                  <div class="flex items-center gap-1 mb-1">
-                    <span class="bg-green-100 text-green-700 text-xs px-1 py-0.5 rounded">支线</span>
-                    <span class="text-gray-500 text-xs">2026.04</span>
-                  </div>
-                  <h4 class="font-semibold text-sm">基金账户开通</h4>
-                  <p class="text-gray-600 text-xs">新手韭菜初体验</p>
-                </div>
-              </div>
+          <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-text-dark leading-tight mb-4">
+            你好，我是 <span class="text-primary">张杰栋</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-text-soft font-body leading-relaxed max-w-2xl lg:mx-0 mx-auto">
+            武汉理工大学金融学硕士在读 · 电商运营方向
+          </p>
+          <p class="text-text-muted mt-4 max-w-xl leading-relaxed lg:mx-0 mx-auto text-sm sm:text-base">
+            拥有字节跳动、得物电商运营实习经历，熟悉补贴运营与履约运营全流程，
+            擅长用数据分析优化活动效率，具备跨部门协同与快速落地能力。
+          </p>
+          <div class="flex flex-wrap gap-3 mt-8 justify-center lg:justify-start">
+            <a href="#experience" class="btn-primary">
+              <i class="fa fa-briefcase"></i> 查看经历
+            </a>
+            <a href="#contact" class="btn-outline">
+              <i class="fa fa-envelope"></i> 联系我
+            </a>
+          </div>
+          <!-- Quick Stats -->
+          <div class="flex flex-wrap gap-3 mt-8 justify-center lg:justify-start">
+            <div class="metric-badge">
+              <span class="num blue">2</span>
+              <span class="label">段大厂实习</span>
             </div>
-            
-            <!-- 2026.01 支线任务 -->
-            <div class="relative flex items-center">
-              <div class="w-1/2 pr-6"></div>
-              <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-green-400 rounded-full border-2 border-white shadow"></div>
-              <div class="w-1/2 pl-6">
-                <div class="bg-light rounded-lg p-3 shadow-sm border-r-3 border-green-400 inline-block">
-                  <div class="flex items-center gap-1 mb-1">
-                    <span class="bg-green-100 text-green-700 text-xs px-1 py-0.5 rounded">支线</span>
-                    <span class="text-gray-500 text-xs">2026.01</span>
-                  </div>
-                  <h4 class="font-semibold text-sm">垂直行业多 Agent 研究系统</h4>
-                  <p class="text-gray-600 text-xs">自动化报告全流程</p>
-                </div>
-              </div>
+            <div class="metric-badge">
+              <span class="num orange">53.4%</span>
+              <span class="label">审批效率提升</span>
             </div>
-            
-            <!-- 2025.09 主线任务 -->
-            <div class="relative flex items-center">
-              <div class="w-1/2 pr-6 text-right">
-                <div class="bg-light rounded-lg p-3 shadow-sm border-l-3 border-primary inline-block">
-                  <div class="flex items-center justify-end gap-1 mb-1">
-                    <span class="bg-primary/10 text-primary text-xs px-1 py-0.5 rounded">主线</span>
-                    <span class="text-gray-500 text-xs">2025.09</span>
-                  </div>
-                  <h4 class="font-semibold text-sm">武汉理工大学金融硕士</h4>
-                  <p class="text-gray-600 text-xs">保研</p>
-                </div>
-              </div>
-              <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-2 border-white shadow"></div>
-              <div class="w-1/2 pl-6"></div>
-            </div>
-            
-            <!-- 2025.07 主线任务 -->
-            <div class="relative flex items-center">
-              <div class="w-1/2 pr-6 text-right">
-                <div class="bg-light rounded-lg p-3 shadow-sm border-l-3 border-primary inline-block">
-                  <div class="flex items-center justify-end gap-1 mb-1">
-                    <span class="bg-primary/10 text-primary text-xs px-1 py-0.5 rounded">主线</span>
-                    <span class="text-gray-500 text-xs">2025.07</span>
-                  </div>
-                  <h4 class="font-semibold text-sm">字节跳动</h4>
-                  <p class="text-gray-600 text-xs">补贴运营实习生</p>
-                </div>
-              </div>
-              <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-2 border-white shadow"></div>
-              <div class="w-1/2 pl-6"></div>
-            </div>
-            
-            <!-- 2025.02 主线任务 -->
-            <div class="relative flex items-center">
-              <div class="w-1/2 pr-6 text-right">
-                <div class="bg-light rounded-lg p-3 shadow-sm border-l-3 border-primary inline-block">
-                  <div class="flex items-center justify-end gap-1 mb-1">
-                    <span class="bg-primary/10 text-primary text-xs px-1 py-0.5 rounded">主线</span>
-                    <span class="text-gray-500 text-xs">2025.02</span>
-                  </div>
-                  <h4 class="font-semibold text-sm">得物App</h4>
-                  <p class="text-gray-600 text-xs">履约运营实习生</p>
-                </div>
-              </div>
-              <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-2 border-white shadow"></div>
-              <div class="w-1/2 pl-6"></div>
-            </div>
-            
-            <!-- 2023.09 支线任务 -->
-            <div class="relative flex items-center">
-              <div class="w-1/2 pr-6"></div>
-              <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-green-400 rounded-full border-2 border-white shadow"></div>
-              <div class="w-1/2 pl-6">
-                <div class="bg-light rounded-lg p-3 shadow-sm border-r-3 border-green-400 inline-block">
-                  <div class="flex items-center gap-1 mb-1">
-                    <span class="bg-green-100 text-green-700 text-xs px-1 py-0.5 rounded">支线</span>
-                    <span class="text-gray-500 text-xs">2023.09</span>
-                  </div>
-                  <h4 class="font-semibold text-sm">快手团长</h4>
-                  <p class="text-gray-600 text-xs">GMV 100w+</p>
-                </div>
-              </div>
-            </div>
-            
-            <!-- 2021.09 主线任务 -->
-            <div class="relative flex items-center">
-              <div class="w-1/2 pr-6 text-right">
-                <div class="bg-light rounded-lg p-3 shadow-sm border-l-3 border-primary inline-block">
-                  <div class="flex items-center justify-end gap-1 mb-1">
-                    <span class="bg-primary/10 text-primary text-xs px-1 py-0.5 rounded">主线</span>
-                    <span class="text-gray-500 text-xs">2021.09</span>
-                  </div>
-                  <h4 class="font-semibold text-sm">武汉理工大学</h4>
-                  <p class="text-gray-600 text-xs">金融科技本科入学</p>
-                </div>
-              </div>
-              <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-2 border-white shadow"></div>
-              <div class="w-1/2 pl-6"></div>
+            <div class="metric-badge">
+              <span class="num blue">189</span>
+              <span class="label">商家成功对接</span>
             </div>
           </div>
         </div>
@@ -528,551 +605,692 @@
     </div>
   </section>
 
-  <!-- 教育背景 -->
-  <section id="education" class="py-20 bg-light">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-primary flex items-center justify-center gap-3">
-        <i class="fa fa-graduation-cap"></i>
-        教育背景
-      </h2>
-      <div class="max-w-4xl mx-auto">
-        <!-- 教育项 1 -->
-        <div class="flex flex-col md:flex-row mb-10">
-          <div class="md:w-1/4 mb-4 md:mb-0">
-            <div class="bg-primary/10 rounded-xl p-4 text-center shadow-sm">
-              <p class="font-semibold text-primary">2025.09 - 2028.06</p>
-              <p class="text-gray-600">硕士</p>
-            </div>
-          </div>
-          <div class="md:w-3/4 md:pl-6">
-            <h3 class="text-xl font-semibold mb-3 text-primary">武汉理工大学 | 经济学院 | 金融</h3>
-            <p class="text-gray-700 leading-relaxed">金融学硕士在读，系统学习金融理论和实践知识，为电商运营提供金融视角的支持。</p>
-          </div>
-        </div>
-        <!-- 教育项 2 -->
-        <div class="flex flex-col md:flex-row">
-          <div class="md:w-1/4 mb-4 md:mb-0">
-            <div class="bg-primary/10 rounded-xl p-4 text-center shadow-sm">
-              <p class="font-semibold text-primary">2021.09 - 2025.06</p>
-              <p class="text-gray-600">本科</p>
-            </div>
-          </div>
-          <div class="md:w-3/4 md:pl-6">
-            <h3 class="text-xl font-semibold mb-3 text-primary">武汉理工大学 | 经济学院 | 金融科技</h3>
-            <p class="text-gray-700 leading-relaxed">金融科技本科，学习金融、计算机和数据分析等相关课程，为电商运营提供技术支持。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
 
-  <!-- 技能 -->
-  <section id="skills" class="py-20 bg-light">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-primary flex items-center justify-center gap-3">
-        <i class="fa fa-tasks"></i>
-        技能
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        <!-- 技能卡片 1 -->
-        <div class="bg-white rounded-xl shadow-sm p-6 card-hover">
-          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-            <i class="fa fa-line-chart text-primary text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-4 text-primary">数据分析</h3>
-          <p class="text-gray-700 leading-relaxed">熟练掌握Excel、SQL、Python (Pandas/Numpy) 数据分析工具，可独立完成数据清洗、分析与可视化，具备Tableau等数据看板搭建与图表呈现能力。</p>
-        </div>
-        <!-- 技能卡片 2 -->
-        <div class="bg-white rounded-xl shadow-sm p-6 card-hover">
-          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-            <i class="fa fa-shopping-cart text-primary text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-4 text-primary">电商运营</h3>
-          <p class="text-gray-700 leading-relaxed">具备电商垂直领域行业研究与竞品分析经验，熟悉补贴运营和履约运营，能够快速适配互联网电商运营节奏。</p>
-        </div>
-        <!-- 技能卡片 3 -->
-        <div class="bg-white rounded-xl shadow-sm p-6 card-hover">
-          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-            <i class="fa fa-language text-primary text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-4 text-primary">英语能力</h3>
-          <p class="text-gray-700 leading-relaxed">英语六级 577，具备良好的读写与跨部门沟通能力。</p>
-        </div>
-        <!-- 技能卡片 4 -->
-        <div class="bg-white rounded-xl shadow-sm p-6 card-hover">
-          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-            <i class="fa fa-users text-primary text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-4 text-primary">沟通协作</h3>
-          <p class="text-gray-700 leading-relaxed">有丰富的项目与团队协作经验，善于跨部门协调推进项目，具备较强的执行力与抗压力。</p>
-        </div>
-        <!-- 技能卡片 5 -->
-        <div class="bg-white rounded-xl shadow-sm p-6 card-hover">
-          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-            <i class="fa fa-tasks text-primary text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-4 text-primary">问题解决</h3>
-          <p class="text-gray-700 leading-relaxed">能够快速理解业务逻辑，输出可落地的运营参考，解决传统研究数据滞后等问题。</p>
-        </div>
-        <!-- 技能卡片 6 -->
-        <div class="bg-white rounded-xl shadow-sm p-6 card-hover">
-          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-            <i class="fa fa-laptop text-primary text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-4 text-primary">办公软件</h3>
-          <p class="text-gray-700 leading-relaxed">熟练使用Office办公软件，包括Word、Excel、PowerPoint等，能够高效完成文档处理和数据统计工作。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 经历 -->
-  <section id="experience" class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-primary flex items-center justify-center gap-3">
-        <i class="fa fa-briefcase"></i>
-        经历
-      </h2>
-      <div class="max-w-4xl mx-auto relative">
-        <!-- 时间轴线 -->
-        <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-primary/20 hidden md:block"></div>
-        
-        <!-- 经历项 1 -->
-        <div class="relative mb-12">
-          <div class="flex items-start">
-            <div class="relative z-10 mr-6">
-              <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
-                <i class="fa fa-briefcase"></i>
-              </div>
+      <!-- ===== SIDEBAR ===== -->
+      <aside class="lg:w-80 flex-shrink-0 sidebar">
+        <div class="glass p-6 space-y-6 reveal visible">
+          <!-- Avatar mini -->
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 flex-shrink-0">
+              <img src="卡通头像.png" alt="张杰栋" class="w-full h-full object-cover">
             </div>
-            <div class="flex-1">
-              <div class="bg-light rounded-xl p-6 shadow-sm card-hover">
-                <div class="flex flex-col md:flex-row md:items-center mb-4">
-                  <h3 class="text-xl font-semibold mb-2 md:mb-0 text-primary">补贴运营</h3>
-                  <p class="text-gray-600 md:ml-4">字节跳动-抖音电商</p>
-                  <p class="text-sm font-semibold text-primary md:ml-auto">2025.02 - 2025.06 <span class="text-gray-600 font-normal">实习</span></p>
+            <div>
+              <h3 class="font-heading font-bold text-lg text-text-dark">张杰栋</h3>
+              <p class="text-sm text-text-muted">电商运营 · 金融硕士在读</p>
+            </div>
+          </div>
+
+          <div class="h-px bg-gradient-to-r from-primary/20 to-transparent"></div>
+
+          <!-- Personal Info -->
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-sm text-text-soft">
+              <i class="fa fa-graduation-cap text-primary w-5 text-center"></i>
+              <span>武汉理工大学 金融学硕士</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm text-text-soft">
+              <i class="fa fa-envelope text-primary w-5 text-center"></i>
+              <span>1240886436@qq.com</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm text-text-soft">
+              <i class="fa fa-phone text-primary w-5 text-center"></i>
+              <span>153-7703-1331</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm text-text-soft">
+              <i class="fa fa-map-marker text-primary w-5 text-center"></i>
+              <span>武汉市洪山区</span>
+            </li>
+            <li class="flex items-center gap-3 text-sm text-text-soft">
+              <i class="fa fa-birthday-cake text-primary w-5 text-center"></i>
+              <span>22岁 · 立即到岗</span>
+            </li>
+          </ul>
+
+          <div class="h-px bg-gradient-to-r from-primary/20 to-transparent"></div>
+
+          <!-- Core Competencies -->
+          <div>
+            <h4 class="text-xs font-semibold uppercase tracking-widest text-text-muted mb-3">核心能力</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">数据分析</span>
+              <span class="tag">补贴运营</span>
+              <span class="tag tag-orange">履约治理</span>
+              <span class="tag">跨部门协同</span>
+              <span class="tag">SQL / Python</span>
+              <span class="tag tag-orange">竞品分析</span>
+            </div>
+          </div>
+
+          <div class="h-px bg-gradient-to-r from-primary/20 to-transparent"></div>
+
+          <!-- Social / QR -->
+          <div class="flex gap-3">
+            <button class="flex-1 py-2.5 rounded-xl border border-primary/20 text-primary text-sm font-medium hover:bg-primary hover:text-white transition-all duration-300 qr-code-btn" data-target="wechat-qr">
+              <i class="fa fa-weixin mr-1.5"></i>微信
+            </button>
+            <button class="flex-1 py-2.5 rounded-xl border border-primary/20 text-primary text-sm font-medium hover:bg-primary hover:text-white transition-all duration-300 qr-code-btn" data-target="qq-qr">
+              <i class="fa fa-qq mr-1.5"></i>QQ
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ===== MAIN CONTENT ===== -->
+      <main class="flex-1 min-w-0 space-y-10 lg:space-y-14">
+
+        <!-- ===== About ===== -->
+        <section id="about">
+          <h2 class="section-heading"><i class="fa fa-user"></i> 关于我</h2>
+          <div class="space-y-4 text-text-soft leading-relaxed text-sm sm:text-base">
+            <p class="glass-card p-5 sm:p-6">我是武汉理工大学金融科技本科、金融学硕士在读学生，对电商运营领域充满热情。在校期间系统学习了金融、数据分析等课程，并积极参与电商相关的实践活动。</p>
+            <p class="glass-card p-5 sm:p-6">我具有字节跳动和得物的电商运营实习经验，熟悉补贴运营和履约运营，具备良好的数据分析能力和跨部门协作能力。性格开朗，善于沟通，具有良好的团队协作精神，能够快速适应新环境。</p>
+            <p class="glass-card p-5 sm:p-6">我希望能够在电商运营领域找到一份全职工作，将所学知识应用到实际工作中，同时不断学习和成长，为企业创造价值。</p>
+          </div>
+
+          <!-- Earth Online Timeline -->
+          <div class="glass p-6 sm:p-8 mt-6">
+            <h3 class="font-heading font-bold text-xl text-text-dark mb-2 flex items-center gap-2">
+              <i class="fa fa-globe text-primary"></i> 地球Online
+              <span class="text-xs font-normal bg-primary-faint text-primary px-2 py-0.5 rounded-full">开放游戏进度</span>
+            </h3>
+            <p class="text-xs text-text-muted mb-6">主线任务 · 支线任务</p>
+
+            <div class="relative">
+              <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/30 via-primary/10 to-transparent rounded-full"></div>
+              <div class="space-y-6 relative">
+                <!-- 2021.09 -->
+                <div class="flex gap-4 items-start reveal-left">
+                  <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold flex-shrink-0 eo-dot eo-dot-main z-10">主</div>
+                  <div class="flex-1 glass-card p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1">
+                      <span class="text-xs font-semibold text-primary">2021.09</span>
+                      <span class="text-xs bg-primary-faint text-primary px-1.5 py-0.5 rounded">主线</span>
+                    </div>
+                    <p class="font-semibold text-text-dark text-sm">武汉理工大学</p>
+                    <p class="text-xs text-text-muted">金融科技本科入学</p>
+                  </div>
                 </div>
-                <ul class="space-y-4 leading-relaxed">
-                  <li class="flex items-start">
-                    <span class="text-primary mr-3 mt-1"><i class="fa fa-check-circle"></i></span>
-                    <span><span class="font-bold">补贴流程标准化与提效：</span>主导构建可复用校划算补贴商品上架全流程复核，搭建「内外比价 - 竞品对标 - 大促优惠核验」标准化复核流程，通过现场复核实现平台补贴竞争力与用户资金审批效率提升 53.4%；针对高价商品建立专项抽检机制，推动频道商品优价率提升 3.7pct，有效保障平台补贴规则与用户心智。</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-primary mr-3 mt-1"><i class="fa fa-check-circle"></i></span>
-                    <span><span class="font-bold">补贴规则迭代与落地：</span>深度参与货补团队流程运营，基于往期评审案例归纳整理全类目补贴规则库，为团队提供标准化评审参考，降低沟通成本；推动完成 2 条新补贴规则迭代落地，优化规则适配性，支撑大促补贴合规性与成本管控。</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-primary mr-3 mt-1"><i class="fa fa-check-circle"></i></span>
-                    <span><span class="font-bold">高风险类目补贴管控：</span>负责 618 大促期间二手、酒水等高风险类目管控，建立「事前准入 - 事中监控 - 事后复核」全流程风控体系，梳理高危商品特征并完善黑名单机制，实时监控货损异动并快速处置异常订单，保障大促补贴资金安全。</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- 经历项 2 -->
-        <div class="relative mb-12">
-          <div class="flex items-start">
-            <div class="relative z-10 mr-6">
-              <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
-                <i class="fa fa-briefcase"></i>
-              </div>
-            </div>
-            <div class="flex-1">
-              <div class="bg-light rounded-xl p-6 shadow-sm card-hover">
-                <div class="flex flex-col md:flex-row md:items-center mb-4">
-                  <h3 class="text-xl font-semibold mb-2 md:mb-0 text-primary">履约运营</h3>
-                  <p class="text-gray-600 md:ml-4">得物-交易履约体验部</p>
-                  <p class="text-sm font-semibold text-primary md:ml-auto">2024.11 - 2025.02 <span class="text-gray-600 font-normal">实习</span></p>
+                <!-- 2023.09 -->
+                <div class="flex gap-4 items-start reveal-right">
+                  <div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center text-xs font-bold flex-shrink-0 eo-dot eo-dot-side z-10">支</div>
+                  <div class="flex-1 glass-card p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1">
+                      <span class="text-xs font-semibold text-accent">2023.09</span>
+                      <span class="text-xs bg-accent-light text-accent-dark px-1.5 py-0.5 rounded">支线</span>
+                    </div>
+                    <p class="font-semibold text-text-dark text-sm">快手团长</p>
+                    <p class="text-xs text-text-muted">GMV 100w+</p>
+                  </div>
                 </div>
-                <ul class="space-y-4 leading-relaxed">
-                  <li class="flex items-start">
-                    <span class="text-primary mr-3 mt-1"><i class="fa fa-check-circle"></i></span>
-                    <span><span class="font-bold">履约治理：</span>负责平台履约规则治理运营，联动类目运营、商家服务等多部门，优化延迟发货、欺诈发货等违规场景的识别策略与处罚措施；跟进虚假收货规则全流程上线，输出申诉与答疑 SOP，推动商家履约率提升 0.048pct，有效降低用户投诉率。</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-primary mr-3 mt-1"><i class="fa fa-check-circle"></i></span>
-                    <span><span class="font-bold">库存等问题：</span>引导商家使用 ERP 对接，提高库存准确率；通过库存共享获取商家实时库存变动，解决订单缺货导致的虚假发货、超卖等问题；引导商家使用智能销量预测系统，及时做好备货，成功对接商家 189 家，有效降低发货缺货率 0.01pct。</span>
-                  </li>
-                  <li class="flex items-start">
-                    <span class="text-primary mr-3 mt-1"><i class="fa fa-check-circle"></i></span>
-                    <span><span class="font-bold">数据运营：</span>监控日常履约体验核心指标，针对数据异常进行归因分析并制作报表，向商家及品类线发送数据透传；运用 SQL 获取商家原声数据并做归因分析，输出系统化优化建议 3 条，解决商家履约卡点问题，提升用户履约体验。</span>
-                  </li>
-                </ul>
+                <!-- 2025.02 -->
+                <div class="flex gap-4 items-start reveal-left">
+                  <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold flex-shrink-0 eo-dot eo-dot-main z-10">主</div>
+                  <div class="flex-1 glass-card p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1">
+                      <span class="text-xs font-semibold text-primary">2025.02</span>
+                      <span class="text-xs bg-primary-faint text-primary px-1.5 py-0.5 rounded">主线</span>
+                    </div>
+                    <p class="font-semibold text-text-dark text-sm">得物App</p>
+                    <p class="text-xs text-text-muted">履约运营实习生</p>
+                  </div>
+                </div>
+                <!-- 2025.07 -->
+                <div class="flex gap-4 items-start reveal-right">
+                  <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold flex-shrink-0 eo-dot eo-dot-main z-10">主</div>
+                  <div class="flex-1 glass-card p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1">
+                      <span class="text-xs font-semibold text-primary">2025.07</span>
+                      <span class="text-xs bg-primary-faint text-primary px-1.5 py-0.5 rounded">主线</span>
+                    </div>
+                    <p class="font-semibold text-text-dark text-sm">字节跳动</p>
+                    <p class="text-xs text-text-muted">补贴运营实习生</p>
+                  </div>
+                </div>
+                <!-- 2025.09 -->
+                <div class="flex gap-4 items-start reveal-left">
+                  <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold flex-shrink-0 eo-dot eo-dot-main z-10">主</div>
+                  <div class="flex-1 glass-card p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1">
+                      <span class="text-xs font-semibold text-primary">2025.09</span>
+                      <span class="text-xs bg-primary-faint text-primary px-1.5 py-0.5 rounded">主线</span>
+                    </div>
+                    <p class="font-semibold text-text-dark text-sm">武汉理工大学</p>
+                    <p class="text-xs text-text-muted">金融硕士保研</p>
+                  </div>
+                </div>
+                <!-- 2026.04 -->
+                <div class="flex gap-4 items-start reveal-right">
+                  <div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center text-xs font-bold flex-shrink-0 eo-dot eo-dot-side z-10">支</div>
+                  <div class="flex-1 glass-card p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1">
+                      <span class="text-xs font-semibold text-accent">2026.04</span>
+                      <span class="text-xs bg-accent-light text-accent-dark px-1.5 py-0.5 rounded">支线</span>
+                    </div>
+                    <p class="font-semibold text-text-dark text-sm">多 Agent 行业研究系统</p>
+                    <p class="text-xs text-text-muted">自动化报告全流程</p>
+                  </div>
+                </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- 项目 -->
-  <section id="projects" class="py-20 bg-light">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-primary flex items-center justify-center gap-3">
-        <i class="fa fa-cogs"></i>
-        项目
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        <!-- 项目卡片 1 -->
-        <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover">
-          <div class="h-48 bg-primary/20 flex items-center justify-center">
-            <i class="fa fa-cogs text-primary text-5xl"></i>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-4 text-primary">多 Agent 协作的电商垂直行业研究系统</h3>
-            <p class="text-gray-700 mb-6 leading-relaxed">依托 Coze 平台搭建多 Agent 协作体系，聚焦个护家清垂直领域，解决传统电商运营中行业研究、竞品追踪、周度运营分析效率低、数据滞后的痛点，为电商运营决策提供自动化支撑。</p>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Coze</span>
-              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">多 Agent</span>
-              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">电商行业研究</span>
+        <!-- ===== Education ===== -->
+        <section id="education">
+          <h2 class="section-heading"><i class="fa fa-graduation-cap"></i> 教育背景</h2>
+          <div class="space-y-4">
+            <div class="glass-card p-5 sm:p-6 edu-card reveal-left">
+              <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                <div class="sm:w-36 flex-shrink-0">
+                  <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary-faint text-primary text-sm font-semibold">
+                    <i class="fa fa-calendar"></i> 2025.09 - 2028.06
+                  </div>
+                  <span class="text-xs text-text-muted ml-2">硕士</span>
+                </div>
+                <div>
+                  <h3 class="font-heading font-bold text-lg text-text-dark">武汉理工大学 · 经济学院 · 金融</h3>
+                  <p class="text-text-soft text-sm mt-1 leading-relaxed">金融学硕士在读，系统学习金融理论和实践知识，为电商运营提供金融视角的支持。</p>
+                </div>
+              </div>
             </div>
-            <p class="text-gray-600 text-sm leading-relaxed">项目成果：搭建自动化研究流水线，将行业研究效率提升 50% 以上，大幅降低人工成本；形成可复用的电商行业研究框架，为后续业务深度研究提供标准化支撑。</p>
-          </div>
-        </div>
-        <!-- 项目卡片 2 -->
-        <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover">
-          <div class="h-48 bg-primary/20 flex items-center justify-center">
-            <i class="fa fa-line-chart text-primary text-5xl"></i>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-4 text-primary">快手团长</h3>
-            <p class="text-gray-700 mb-6 leading-relaxed">负责快手平台商品运营、达人对接与数据分析，通过市场调研、竞品分析和价格谈判筛选核心推广商品，匹配契合的达人进行建联，评估推广效果并优化策略，实现商品从选品到打爆的全链路运营。</p>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">商品运营</span>
-              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">达人对接</span>
-              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">数据分析</span>
+            <div class="glass-card p-5 sm:p-6 edu-card reveal-right">
+              <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                <div class="sm:w-36 flex-shrink-0">
+                  <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary-faint text-primary text-sm font-semibold">
+                    <i class="fa fa-calendar"></i> 2021.09 - 2025.06
+                  </div>
+                  <span class="text-xs text-text-muted ml-2">本科</span>
+                </div>
+                <div>
+                  <h3 class="font-heading font-bold text-lg text-text-dark">武汉理工大学 · 经济学院 · 金融科技</h3>
+                  <p class="text-text-soft text-sm mt-1 leading-relaxed">金融科技本科，学习金融、计算机和数据分析等相关课程，为电商运营提供技术支持。</p>
+                </div>
+              </div>
             </div>
-            <p class="text-gray-600 text-sm leading-relaxed">项目成果：打造月销破万单品 1 件，累计月销破万单品 20 件；累计服务达人 300 余人，达成长期合作 20 余人；首月实现 GMV 超 100w，创收超 3w，个人贡献占比 40%，有效支撑业务目标达成。</p>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        </section>
 
-  <!-- 兴趣爱好 -->
-  <section id="hobbies" class="py-20 bg-light">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-primary flex items-center justify-center gap-3">
-        <i class="fa fa-heart"></i>
-        兴趣爱好
-      </h2>
-      <div class="max-w-5xl mx-auto space-y-8">
-        <!-- 吉他弹唱 -->
-        <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-4 text-primary">吉他弹唱</h3>
-            <div class="flex justify-center">
-              <!-- 音频播放器 -->
-              <div class="flex flex-col items-center w-full max-w-md">
-                <h4 class="text-lg font-medium mb-3 text-secondary">醉赤壁</h4>
-                <div class="bg-light rounded-lg p-6 w-full flex flex-col items-center">
-                  <!-- 播放器图标 -->
-                  <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mb-4 cursor-pointer hover:bg-secondary transition-colors duration-300" id="play-button">
+        <!-- ===== Skills ===== -->
+        <section id="skills">
+          <h2 class="section-heading"><i class="fa fa-tasks"></i> 技能</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 stagger-children">
+            <div class="glass-card p-5 sm:p-6">
+              <div class="flex items-center gap-4 mb-3">
+                <div class="w-12 h-12 rounded-xl bg-primary-faint flex items-center justify-center text-primary text-xl">
+                  <i class="fa fa-line-chart"></i>
+                </div>
+                <h3 class="font-heading font-bold text-text-dark">数据分析</h3>
+              </div>
+              <p class="text-text-soft text-sm leading-relaxed">熟练掌握 Excel、SQL、Python (Pandas/Numpy)，可独立完成数据清洗、分析与可视化，具备 Tableau 等数据看板搭建能力。</p>
+            </div>
+            <div class="glass-card p-5 sm:p-6">
+              <div class="flex items-center gap-4 mb-3">
+                <div class="w-12 h-12 rounded-xl bg-primary-faint flex items-center justify-center text-primary text-xl">
+                  <i class="fa fa-shopping-cart"></i>
+                </div>
+                <h3 class="font-heading font-bold text-text-dark">电商运营</h3>
+              </div>
+              <p class="text-text-soft text-sm leading-relaxed">具备电商垂直领域行业研究与竞品分析经验，熟悉补贴运营和履约运营全流程，能够快速适配互联网电商运营节奏。</p>
+            </div>
+            <div class="glass-card p-5 sm:p-6">
+              <div class="flex items-center gap-4 mb-3">
+                <div class="w-12 h-12 rounded-xl bg-primary-faint flex items-center justify-center text-primary text-xl">
+                  <i class="fa fa-language"></i>
+                </div>
+                <h3 class="font-heading font-bold text-text-dark">英语能力</h3>
+              </div>
+              <p class="text-text-soft text-sm leading-relaxed">英语六级 577，具备良好的读写与跨部门沟通能力。</p>
+            </div>
+            <div class="glass-card p-5 sm:p-6">
+              <div class="flex items-center gap-4 mb-3">
+                <div class="w-12 h-12 rounded-xl bg-primary-faint flex items-center justify-center text-primary text-xl">
+                  <i class="fa fa-users"></i>
+                </div>
+                <h3 class="font-heading font-bold text-text-dark">沟通协作</h3>
+              </div>
+              <p class="text-text-soft text-sm leading-relaxed">丰富的项目与团队协作经验，善于跨部门协调推进项目，具备较强的执行力与抗压力。</p>
+            </div>
+            <div class="glass-card p-5 sm:p-6">
+              <div class="flex items-center gap-4 mb-3">
+                <div class="w-12 h-12 rounded-xl bg-primary-faint flex items-center justify-center text-primary text-xl">
+                  <i class="fa fa-tasks"></i>
+                </div>
+                <h3 class="font-heading font-bold text-text-dark">问题解决</h3>
+              </div>
+              <p class="text-text-soft text-sm leading-relaxed">能够快速理解业务逻辑，输出可落地的运营参考，解决传统研究数据滞后等问题。</p>
+            </div>
+            <div class="glass-card p-5 sm:p-6">
+              <div class="flex items-center gap-4 mb-3">
+                <div class="w-12 h-12 rounded-xl bg-primary-faint flex items-center justify-center text-primary text-xl">
+                  <i class="fa fa-laptop"></i>
+                </div>
+                <h3 class="font-heading font-bold text-text-dark">办公软件</h3>
+              </div>
+              <p class="text-text-soft text-sm leading-relaxed">熟练使用 Office 办公软件包括 Word、Excel、PowerPoint 等，高效完成文档处理和数据统计工作。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== Experience ===== -->
+        <section id="experience">
+          <h2 class="section-heading"><i class="fa fa-briefcase"></i> 经历</h2>
+
+          <!-- ByteDance -->
+          <div class="mb-8">
+            <div class="flex items-start gap-4 mb-3">
+              <div class="timeline-dot"><i class="fa fa-briefcase"></i></div>
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mb-1">
+                  <h3 class="font-heading font-bold text-lg text-text-dark">补贴运营</h3>
+                  <span class="text-text-muted text-sm">字节跳动 · 抖音电商</span>
+                  <span class="text-xs text-primary font-semibold sm:ml-auto whitespace-nowrap">2025.07 - 2025.12 实习</span>
+                </div>
+                <!-- Metric badges -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <div class="metric-badge">
+                    <span class="num blue">53.4%</span>
+                    <span class="label">审批效率提升</span>
+                  </div>
+                  <div class="metric-badge">
+                    <span class="num orange">+3.7pct</span>
+                    <span class="label">优价率提升</span>
+                  </div>
+                  <div class="metric-badge">
+                    <span class="num blue">2</span>
+                    <span class="label">补贴规则迭代</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="glass-card p-5 sm:p-6 ml-0 sm:ml-16">
+              <ul class="space-y-4 text-text-soft text-sm leading-relaxed">
+                <li class="flex items-start gap-3">
+                  <i class="fa fa-check-circle text-primary mt-0.5 flex-shrink-0"></i>
+                  <span><strong>补贴流程标准化与提效：</strong>主导构建可复用校划算补贴商品上架全流程复核，搭建「内外比价 - 竞品对标 - 大促优惠核验」标准化复核流程，通过现场复核实现平台补贴竞争力与用户资金审批效率提升 <strong class="text-primary">53.4%</strong>；针对高价商品建立专项抽检机制，推动频道商品优价率提升 <strong class="text-primary">3.7pct</strong>。</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fa fa-check-circle text-primary mt-0.5 flex-shrink-0"></i>
+                  <span><strong>补贴规则迭代与落地：</strong>深度参与货补团队流程运营，基于往期评审案例归纳整理全类目补贴规则库，推动完成 2 条新补贴规则迭代落地，优化规则适配性，支撑大促补贴合规性与成本管控。</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fa fa-check-circle text-primary mt-0.5 flex-shrink-0"></i>
+                  <span><strong>高风险类目补贴管控：</strong>负责 618 大促期间二手、酒水等高风险类目管控，建立「事前准入 - 事中监控 - 事后复核」全流程风控体系，实时监控货损异动并快速处置异常订单，保障大促补贴资金安全。</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Dewu -->
+          <div>
+            <div class="flex items-start gap-4 mb-3">
+              <div class="timeline-dot"><i class="fa fa-briefcase"></i></div>
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mb-1">
+                  <h3 class="font-heading font-bold text-lg text-text-dark">履约运营</h3>
+                  <span class="text-text-muted text-sm">得物 · 交易履约体验部</span>
+                  <span class="text-xs text-primary font-semibold sm:ml-auto whitespace-nowrap">2024.11 - 2025.02 实习</span>
+                </div>
+                <!-- Metric badges -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <div class="metric-badge">
+                    <span class="num blue">189</span>
+                    <span class="label">商家成功对接</span>
+                  </div>
+                  <div class="metric-badge">
+                    <span class="num orange">+0.048pct</span>
+                    <span class="label">履约率提升</span>
+                  </div>
+                  <div class="metric-badge">
+                    <span class="num blue">3</span>
+                    <span class="label">系统优化建议</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="glass-card p-5 sm:p-6 ml-0 sm:ml-16">
+              <ul class="space-y-4 text-text-soft text-sm leading-relaxed">
+                <li class="flex items-start gap-3">
+                  <i class="fa fa-check-circle text-primary mt-0.5 flex-shrink-0"></i>
+                  <span><strong>履约治理：</strong>负责平台履约规则治理运营，联动类目运营、商家服务等多部门，优化延迟发货、欺诈发货等违规场景的识别策略与处罚措施；跟进虚假收货规则全流程上线，输出申诉与答疑 SOP，推动商家履约率提升 <strong class="text-primary">0.048pct</strong>。</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fa fa-check-circle text-primary mt-0.5 flex-shrink-0"></i>
+                  <span><strong>库存问题解决：</strong>引导商家使用 ERP 对接，提高库存准确率；通过库存共享获取商家实时库存变动，解决订单缺货导致的虚假发货、超卖等问题；引导商家使用智能销量预测系统，成功对接商家 <strong class="text-primary">189</strong> 家。</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i class="fa fa-check-circle text-primary mt-0.5 flex-shrink-0"></i>
+                  <span><strong>数据运营：</strong>监控日常履约体验核心指标，针对数据异常进行归因分析并制作报表；运用 SQL 获取商家原声数据并做归因分析，输出系统化优化建议 <strong class="text-primary">3</strong> 条，解决商家履约卡点问题。</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== Projects ===== -->
+        <section id="projects">
+          <h2 class="section-heading"><i class="fa fa-cogs"></i> 项目</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="glass-card overflow-hidden reveal-left">
+              <div class="project-icon-area h-44 flex items-center justify-center">
+                <i class="fa fa-cogs text-primary text-5xl"></i>
+              </div>
+              <div class="p-5">
+                <h3 class="font-heading font-bold text-text-dark mb-2">多 Agent 电商行业研究系统</h3>
+                <p class="text-text-soft text-sm leading-relaxed mb-4">依托 Coze 平台搭建多 Agent 协作体系，聚焦个护家清垂直领域，解决行业研究、竞品追踪效率低的痛点。</p>
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                  <span class="tag">Coze</span>
+                  <span class="tag">多 Agent</span>
+                  <span class="tag">电商行业研究</span>
+                </div>
+                <p class="text-xs text-text-muted">效率提升 <strong class="text-primary">50%+</strong>，形成可复用研究框架</p>
+              </div>
+            </div>
+            <div class="glass-card overflow-hidden reveal-right">
+              <div class="project-icon-area h-44 flex items-center justify-center">
+                <i class="fa fa-line-chart text-primary text-5xl"></i>
+              </div>
+              <div class="p-5">
+                <h3 class="font-heading font-bold text-text-dark mb-2">快手团长</h3>
+                <p class="text-text-soft text-sm leading-relaxed mb-4">负责快手平台商品运营、达人对接与数据分析，实现商品从选品到打爆的全链路运营。</p>
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                  <span class="tag">商品运营</span>
+                  <span class="tag">达人对接</span>
+                  <span class="tag">数据分析</span>
+                </div>
+                <p class="text-xs text-text-muted">GMV <strong class="text-primary">100w+</strong> · 月销破万单品 <strong class="text-primary">20+</strong> · 服务达人 <strong class="text-primary">300+</strong></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== Hobbies ===== -->
+        <section id="hobbies">
+          <h2 class="section-heading"><i class="fa fa-heart"></i> 生活</h2>
+          <div class="space-y-5">
+            <!-- Music -->
+            <div class="glass-card p-5 sm:p-6">
+              <h3 class="font-heading font-bold text-lg text-text-dark mb-4 flex items-center gap-2">
+                <i class="fa fa-music text-primary"></i> 吉他弹唱
+              </h3>
+              <div class="flex flex-col items-center max-w-sm mx-auto">
+                <h4 class="text-sm font-medium text-text-muted mb-4">醉赤壁</h4>
+                <div class="glass p-6 w-full flex flex-col items-center rounded-xl">
+                  <div class="w-20 h-20 rounded-full bg-primary flex items-center justify-center mb-4 cursor-pointer hover:bg-accent transition-all duration-300" id="play-button">
                     <i class="fa fa-play text-white text-3xl"></i>
                   </div>
-                  <!-- 音频元素 -->
-                  <audio id="audio-player" src="醉赤壁.mp3">
-                    您的浏览器不支持音频播放。
-                  </audio>
-                  <!-- 进度条 -->
-                  <div class="w-full mt-4">
-                    <div class="flex justify-between text-xs text-gray-500 mb-1">
+                  <audio id="audio-player" src="醉赤壁.mp3">您的浏览器不支持音频播放。</audio>
+                  <div class="w-full mt-2">
+                    <div class="flex justify-between text-xs text-text-muted mb-1">
                       <span id="current-time">0:00</span>
                       <span id="duration">0:00</span>
                     </div>
-                    <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div class="h-full bg-primary rounded-full" id="progress-bar" style="width: 0%"></div>
+                    <div class="w-full h-1.5 rounded-full bg-primary/10 overflow-hidden">
+                      <div class="h-full rounded-full bg-primary transition-all duration-150" id="progress-bar" style="width: 0%"></div>
                     </div>
                   </div>
                 </div>
+                <p class="text-xs text-text-muted mt-3">个人翻唱作品</p>
               </div>
             </div>
-            <p class="text-gray-600 text-sm mt-4 text-center">个人翻唱作品，展示音乐爱好</p>
-          </div>
-        </div>
-        
-        <!-- 旅行 -->
-        <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-4 text-primary">旅行</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <!-- 旅行照片 -->
-              <div class="overflow-hidden rounded-lg">
-                <img src="北京·地坛公园.jpg" alt="北京·地坛公园" class="w-full h-40 object-cover hover:scale-110 transition-transform duration-300">
-                <p class="text-center text-sm mt-2 text-gray-600">北京-地坛公园</p>
-              </div>
-              <div class="overflow-hidden rounded-lg">
-                <img src="上海·外滩渡口.jpg" alt="上海·外滩渡口" class="w-full h-40 object-cover hover:scale-110 transition-transform duration-300">
-                <p class="text-center text-sm mt-2 text-gray-600">上海-外滩</p>
-              </div>
-              <div class="overflow-hidden rounded-lg">
-                <img src="成都·大熊猫基地.jpg" alt="成都·大熊猫基地" class="w-full h-40 object-cover hover:scale-110 transition-transform duration-300">
-                <p class="text-center text-sm mt-2 text-gray-600">成都-大熊猫基地</p>
-              </div>
-              <div class="overflow-hidden rounded-lg">
-                <img src="昆明·滇池.jpg" alt="昆明·滇池" class="w-full h-40 object-cover hover:scale-110 transition-transform duration-300">
-                <p class="text-center text-sm mt-2 text-gray-600">昆明-滇池</p>
-              </div>
-              <div class="overflow-hidden rounded-lg">
-                <img src="长沙·岳麓山.jpg" alt="长沙·岳麓山" class="w-full h-40 object-cover hover:scale-110 transition-transform duration-300">
-                <p class="text-center text-sm mt-2 text-gray-600">长沙-岳麓山</p>
-              </div>
-              <div class="overflow-hidden rounded-lg">
-                <img src="天津·世纪钟.jpg" alt="天津·世纪钟" class="w-full h-40 object-cover hover:scale-110 transition-transform duration-300">
-                <p class="text-center text-sm mt-2 text-gray-600">天津-世纪钟</p>
-              </div>
-              <div class="overflow-hidden rounded-lg">
-                <img src="杭州·西湖.jpg" alt="杭州·西湖" class="w-full h-40 object-cover hover:scale-110 transition-transform duration-300">
-                <p class="text-center text-sm mt-2 text-gray-600">杭州-西湖</p>
-              </div>
-            </div>
-            <p class="text-gray-600 text-sm mt-4">喜欢探索不同城市的文化与风景，丰富个人阅历</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- 联系方式 -->
-  <section id="contact" class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-primary flex items-center justify-center gap-3">
-        <i class="fa fa-envelope"></i>
-        联系方式
-      </h2>
-      <div class="max-w-4xl mx-auto flex flex-col items-center">
-        <div class="w-full md:w-1/2 mb-8 md:mb-0">
-          <ul class="space-y-6">
-            <li class="flex items-start">
-              <i class="fa fa-envelope text-secondary mt-1 mr-4 w-6"></i>
-              <div>
-                <p class="font-medium">邮箱</p>
-                <p class="text-gray-600">1240886436@qq.com</p>
+            <!-- Travel -->
+            <div class="glass-card p-5 sm:p-6">
+              <h3 class="font-heading font-bold text-lg text-text-dark mb-4 flex items-center gap-2">
+                <i class="fa fa-plane text-primary"></i> 旅行
+              </h3>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div class="travel-img-wrap relative">
+                  <img src="北京·地坛公园.jpg" alt="北京·地坛公园" class="w-full h-32 object-cover">
+                  <p class="text-center text-xs text-text-muted mt-1.5">北京-地坛公园</p>
+                </div>
+                <div class="travel-img-wrap relative">
+                  <img src="上海·外滩渡口.jpg" alt="上海·外滩渡口" class="w-full h-32 object-cover">
+                  <p class="text-center text-xs text-text-muted mt-1.5">上海-外滩</p>
+                </div>
+                <div class="travel-img-wrap relative">
+                  <img src="成都·大熊猫基地.jpg" alt="成都·大熊猫基地" class="w-full h-32 object-cover">
+                  <p class="text-center text-xs text-text-muted mt-1.5">成都-熊猫基地</p>
+                </div>
+                <div class="travel-img-wrap relative">
+                  <img src="昆明·滇池.jpg" alt="昆明·滇池" class="w-full h-32 object-cover">
+                  <p class="text-center text-xs text-text-muted mt-1.5">昆明-滇池</p>
+                </div>
+                <div class="travel-img-wrap relative">
+                  <img src="长沙·岳麓山.jpg" alt="长沙·岳麓山" class="w-full h-32 object-cover">
+                  <p class="text-center text-xs text-text-muted mt-1.5">长沙-岳麓山</p>
+                </div>
+                <div class="travel-img-wrap relative">
+                  <img src="天津·世纪钟.jpg" alt="天津·世纪钟" class="w-full h-32 object-cover">
+                  <p class="text-center text-xs text-text-muted mt-1.5">天津-世纪钟</p>
+                </div>
+                <div class="travel-img-wrap relative">
+                  <img src="杭州·西湖.jpg" alt="杭州·西湖" class="w-full h-32 object-cover">
+                  <p class="text-center text-xs text-text-muted mt-1.5">杭州-西湖</p>
+                </div>
               </div>
-            </li>
-            <li class="flex items-start">
-              <i class="fa fa-phone text-secondary mt-1 mr-4 w-6"></i>
-              <div>
-                <p class="font-medium">电话</p>
-                <p class="text-gray-600">153-7703-1331</p>
-              </div>
-            </li>
-            <li class="flex items-start">
-              <i class="fa fa-map-marker text-secondary mt-1 mr-4 w-6"></i>
-              <div>
-                <p class="font-medium">地址</p>
-                <p class="text-gray-600">武汉市洪山区武汉理工大学</p>
-              </div>
-            </li>
-          </ul>
-          <div class="mt-10 flex justify-center space-x-12">
-            <!-- 微信二维码 -->
-            <button class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-secondary transition-all-300 qr-code-btn" data-target="wechat-qr">
-              <i class="fa fa-weixin text-lg"></i>
-            </button>
-            <!-- QQ二维码 -->
-            <button class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-secondary transition-all-300 qr-code-btn" data-target="qq-qr">
-              <i class="fa fa-qq text-lg"></i>
-            </button>
-          </div>
-          
-          <!-- 二维码模态框 -->
-          <div id="wechat-qr" class="qr-modal hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full min-h-[600px] flex flex-col justify-center">
-              <button class="qr-close absolute top-4 right-4 text-gray-500 hover:text-gray-700">
-                <i class="fa fa-times text-xl"></i>
-              </button>
-              <img src="微信二维码.jpg" alt="微信二维码" class="w-72 h-auto mx-auto object-contain">
-              <p class="text-center mt-8 text-lg text-gray-600">扫码添加微信</p>
+              <p class="text-xs text-text-muted mt-4">喜欢探索不同城市的文化与风景</p>
             </div>
-          </div>
-          
-          <div id="qq-qr" class="qr-modal hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full min-h-[600px] flex flex-col justify-center">
-              <button class="qr-close absolute top-4 right-4 text-gray-500 hover:text-gray-700">
-                <i class="fa fa-times text-xl"></i>
-              </button>
-              <img src="QQ二维码.jpg" alt="QQ二维码" class="w-72 h-auto mx-auto object-contain">
-              <p class="text-center mt-8 text-lg text-gray-600">扫码添加QQ</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- 页脚 -->
-  <footer class="bg-primary text-white py-8">
-    <div class="container mx-auto px-4 text-center">
-      <p class="mb-4">© 2026 电商运营简历 | 张杰栋</p>
-      <p class="text-white/80">感谢您的访问，期待与您合作！</p>
+            <!-- AI -->
+            <div class="glass-card p-5 sm:p-6">
+              <h3 class="font-heading font-bold text-lg text-text-dark mb-3 flex items-center gap-2">
+                <i class="fa fa-magic text-primary"></i> AI 小实验
+              </h3>
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="tag tag-orange">月光塔罗</span>
+                <span class="tag tag-orange">Vibe Coding</span>
+              </div>
+              <p class="text-text-soft text-sm leading-relaxed mb-4">一个基于 AI 的塔罗占卜小项目，在月光下与自己对话，通过沉浸式视觉体验和 AI 生成的解读，为用户提供独特的占卜体验。</p>
+              <a href="https://hio037.github.io/moonlight-tarot/" target="_blank" class="inline-flex items-center gap-1.5 text-primary text-sm font-medium hover:text-accent transition-colors">
+                <i class="fa fa-external-link"></i> 访问网站
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== Contact ===== -->
+        <section id="contact">
+          <h2 class="section-heading"><i class="fa fa-envelope"></i> 联系方式</h2>
+          <div class="glass-card p-6 sm:p-8">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-8 sm:gap-12">
+              <div class="space-y-4 flex-1">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-primary-faint flex items-center justify-center text-primary flex-shrink-0">
+                    <i class="fa fa-envelope"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs text-text-muted">邮箱</p>
+                    <p class="text-text-dark font-medium">1240886436@qq.com</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-primary-faint flex items-center justify-center text-primary flex-shrink-0">
+                    <i class="fa fa-phone"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs text-text-muted">电话</p>
+                    <p class="text-text-dark font-medium">153-7703-1331</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-primary-faint flex items-center justify-center text-primary flex-shrink-0">
+                    <i class="fa fa-map-marker"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs text-text-muted">地址</p>
+                    <p class="text-text-dark font-medium">武汉市洪山区 武汉理工大学</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <button class="w-14 h-14 rounded-2xl border-2 border-primary/20 text-primary text-xl hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 qr-code-btn" data-target="wechat-qr">
+                  <i class="fa fa-weixin"></i>
+                </button>
+                <button class="w-14 h-14 rounded-2xl border-2 border-primary/20 text-primary text-xl hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 qr-code-btn" data-target="qq-qr">
+                  <i class="fa fa-qq"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ===== QR Modals ===== -->
+  <div id="wechat-qr" class="qr-modal hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
+    <div class="glass p-8 max-w-sm w-full mx-4 text-center">
+      <button class="qr-close float-right text-text-muted hover:text-text-dark transition-colors">
+        <i class="fa fa-times text-xl"></i>
+      </button>
+      <img src="微信二维码.jpg" alt="微信二维码" class="w-64 mx-auto object-contain mt-4">
+      <p class="text-text-soft mt-6 text-sm">扫码添加微信</p>
+    </div>
+  </div>
+  <div id="qq-qr" class="qr-modal hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
+    <div class="glass p-8 max-w-sm w-full mx-4 text-center">
+      <button class="qr-close float-right text-text-muted hover:text-text-dark transition-colors">
+        <i class="fa fa-times text-xl"></i>
+      </button>
+      <img src="QQ二维码.jpg" alt="QQ二维码" class="w-64 mx-auto object-contain mt-4">
+      <p class="text-text-soft mt-6 text-sm">扫码添加QQ</p>
+    </div>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer class="text-white py-10 mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="flex items-center justify-center gap-2 mb-3">
+        <div class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center text-sm font-bold">张</div>
+        <span class="font-heading font-bold text-lg">杰栋</span>
+      </div>
+      <p class="text-white/60 text-sm">© 2026 电商运营简历 · 感谢您的访问，期待与您合作</p>
     </div>
   </footer>
 
   <script>
-    // 移动端菜单切换
+    // Mobile menu toggle
     document.getElementById('menu-toggle').addEventListener('click', function() {
-      const mobileMenu = document.getElementById('mobile-menu');
-      mobileMenu.classList.toggle('hidden');
+      document.getElementById('mobile-menu').classList.toggle('hidden');
     });
 
-    // 平滑滚动
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+      anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          window.scrollTo({
-            top: target.offsetTop - 80,
-            behavior: 'smooth'
-          });
-          // 关闭移动端菜单
+          window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
           document.getElementById('mobile-menu').classList.add('hidden');
         }
       });
     });
 
-    // 导航栏滚动高亮
-    function highlightNavigation() {
+    // Nav highlight on scroll
+    function highlightNav() {
       const sections = document.querySelectorAll('section[id]');
-      const navLinks = document.querySelectorAll('nav a[href^="#"]');
-      
-      let currentSection = '';
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.pageYOffset >= sectionTop - 100) {
-          currentSection = section.getAttribute('id');
-        }
+      const links = document.querySelectorAll('.nav-link');
+      let current = '';
+      sections.forEach(s => {
+        if (window.pageYOffset >= s.offsetTop - 120) current = s.getAttribute('id');
       });
-      
-      navLinks.forEach(link => {
-        link.classList.remove('text-primary', 'font-semibold');
-        link.classList.add('text-gray-600');
-        if (link.getAttribute('href') === `#${currentSection}`) {
-          link.classList.remove('text-gray-600');
-          link.classList.add('text-primary', 'font-semibold');
-        }
+      links.forEach(l => {
+        l.classList.remove('active');
+        if (l.getAttribute('href') === '#' + current) l.classList.add('active');
       });
     }
+    window.addEventListener('scroll', highlightNav);
+    window.addEventListener('load', highlightNav);
 
-    // 监听滚动事件
-    window.addEventListener('scroll', highlightNavigation);
-    // 初始加载时执行一次
-    window.addEventListener('load', highlightNavigation);
-
-    // 加载动画控制
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.body.classList.add('loaded');
-      }, 1500);
+    // Nav scroll style
+    window.addEventListener('scroll', function() {
+      document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 20);
     });
 
-    // 二维码模态框显示/隐藏
+    // Scroll reveal
+    function initReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Stagger children
+      document.querySelectorAll('.stagger-children > *').forEach((el, i) => {
+        el.style.transitionDelay = (i * 0.1) + 's';
+      });
+
+      // Earth online stagger
+      document.querySelectorAll('#about .relative .space-y-6 > div').forEach((el, i) => {
+        el.style.transitionDelay = (i * 0.1) + 's';
+      });
+    }
+    initReveal();
+
+    // QR modals
     document.querySelectorAll('.qr-code-btn').forEach(btn => {
       btn.addEventListener('click', function() {
-        const targetId = this.getAttribute('data-target');
-        const qrModal = document.getElementById(targetId);
-        qrModal.classList.remove('hidden');
+        document.getElementById(this.getAttribute('data-target')).classList.remove('hidden');
       });
     });
-
-    // 关闭二维码模态框
     document.querySelectorAll('.qr-close').forEach(btn => {
       btn.addEventListener('click', function() {
-        const modal = this.closest('.qr-modal');
-        modal.classList.add('hidden');
+        this.closest('.qr-modal').classList.add('hidden');
       });
     });
-
-    // 点击模态框外部关闭
     document.querySelectorAll('.qr-modal').forEach(modal => {
       modal.addEventListener('click', function(e) {
-        if (e.target === this) {
-          this.classList.add('hidden');
-        }
+        if (e.target === this) this.classList.add('hidden');
       });
     });
 
-    // 打字机效果
+    // Audio player
     document.addEventListener('DOMContentLoaded', function() {
-      const title = document.getElementById('hero-title');
-      const originalText = title.textContent;
-      title.textContent = '';
-      
-      let index = 0;
-      const typingSpeed = 80;
-      
-      function type() {
-        if (index < originalText.length) {
-          title.textContent += originalText.charAt(index);
-          index++;
-          setTimeout(type, typingSpeed);
-        }
-      }
-      
-      // 开始打字机效果
-      setTimeout(type, 500);
-      
-      // 名字彩色跳动效果
-      const nameElement = document.getElementById('name');
-      const colors = ['#FFD700', '#FF6347', '#4682B4', '#32CD32', '#FF69B4'];
-      let colorIndex = 0;
-      
-      setInterval(() => {
-        nameElement.style.color = colors[colorIndex];
-        colorIndex = (colorIndex + 1) % colors.length;
-      }, 1000);
-      
-      // 音频播放器控制
-      const audioPlayer = document.getElementById('audio-player');
-      const playButton = document.getElementById('play-button');
-      const progressBar = document.getElementById('progress-bar');
-      const currentTimeElement = document.getElementById('current-time');
-      const durationElement = document.getElementById('duration');
-      
-      // 播放/暂停切换
-      playButton.addEventListener('click', function() {
-        if (audioPlayer.paused) {
-          audioPlayer.play();
-          playButton.innerHTML = '<i class="fa fa-pause text-white text-3xl"></i>';
+      const player = document.getElementById('audio-player');
+      const btn = document.getElementById('play-button');
+      const bar = document.getElementById('progress-bar');
+      const cur = document.getElementById('current-time');
+      const dur = document.getElementById('duration');
+
+      btn.addEventListener('click', function() {
+        if (player.paused) {
+          player.play();
+          btn.innerHTML = '<i class="fa fa-pause text-white text-3xl"></i>';
         } else {
-          audioPlayer.pause();
-          playButton.innerHTML = '<i class="fa fa-play text-white text-3xl"></i>';
+          player.pause();
+          btn.innerHTML = '<i class="fa fa-play text-white text-3xl"></i>';
         }
       });
-      
-      // 音频元数据加载完成后设置总时长
-      audioPlayer.addEventListener('loadedmetadata', function() {
-        const duration = audioPlayer.duration;
-        const minutes = Math.floor(duration / 60);
-        const seconds = Math.floor(duration % 60);
-        durationElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+      player.addEventListener('loadedmetadata', function() {
+        const m = Math.floor(player.duration / 60);
+        const s = Math.floor(player.duration % 60);
+        dur.textContent = m + ':' + s.toString().padStart(2, '0');
       });
-      
-      // 播放过程中更新进度条和当前时间
-      audioPlayer.addEventListener('timeupdate', function() {
-        const currentTime = audioPlayer.currentTime;
-        const duration = audioPlayer.duration;
-        const progress = (currentTime / duration) * 100;
-        progressBar.style.width = `${progress}%`;
-        
-        // 更新当前时间显示
-        const minutes = Math.floor(currentTime / 60);
-        const seconds = Math.floor(currentTime % 60);
-        currentTimeElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+      player.addEventListener('timeupdate', function() {
+        const p = (player.currentTime / player.duration) * 100;
+        bar.style.width = p + '%';
+        const m = Math.floor(player.currentTime / 60);
+        const s = Math.floor(player.currentTime % 60);
+        cur.textContent = m + ':' + s.toString().padStart(2, '0');
       });
-      
-      // 播放结束后重置播放按钮
-      audioPlayer.addEventListener('ended', function() {
-        playButton.innerHTML = '<i class="fa fa-play text-white text-3xl"></i>';
-        progressBar.style.width = '0%';
-        currentTimeElement.textContent = '0:00';
+
+      player.addEventListener('ended', function() {
+        btn.innerHTML = '<i class="fa fa-play text-white text-3xl"></i>';
+        bar.style.width = '0%';
+        cur.textContent = '0:00';
       });
     });
   </script>
